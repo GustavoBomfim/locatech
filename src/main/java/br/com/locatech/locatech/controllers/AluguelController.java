@@ -1,5 +1,6 @@
 package br.com.locatech.locatech.controllers;
 
+import br.com.locatech.locatech.dtos.AluguelRequestDTO;
 import br.com.locatech.locatech.entities.Aluguel;
 import br.com.locatech.locatech.services.AluguelService;
 import org.slf4j.Logger;
@@ -40,7 +41,7 @@ public class AluguelController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveAluguel(@RequestBody Aluguel aluguel) {
+    public ResponseEntity<Void> saveAluguel(@RequestBody AluguelRequestDTO aluguel) {
         logger.info("POST -> /alugueis");
         aluguelService.saveAluguel(aluguel);
         return ResponseEntity.status(201).build();

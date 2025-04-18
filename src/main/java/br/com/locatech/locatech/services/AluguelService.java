@@ -1,5 +1,6 @@
 package br.com.locatech.locatech.services;
 
+import br.com.locatech.locatech.dtos.AluguelRequestDTO;
 import br.com.locatech.locatech.entities.Aluguel;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface AluguelService {
 
     Optional<Aluguel> findAluguelById(Long id);
 
-    void saveAluguel(Aluguel aluguel);
+    void saveAluguel(AluguelRequestDTO aluguel);
 
     void updateAluguel(Aluguel aluguel, Long id);
 

@@ -31,6 +31,20 @@ CREATE TABLE alugueis
     FOREIGN KEY (veiculo_id) REFERENCES veiculos (id)
 );
 
+CREATE TABLE reservas
+(
+    id             BIGINT AUTO_INCREMENT PRIMARY KEY,
+    pessoa_id      BIGINT NOT NULL,
+    veiculo_id     BIGINT NOT NULL,
+    data_inicio    DATE   NOT NULL,
+    data_fim       DATE   NOT NULL,
+    status         VARCHAR(50), -- reservado, cancelado, concluído
+    valor_estimado DECIMAL(10, 2),
+    criado_em      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (pessoa_id) REFERENCES pessoas (id),
+    FOREIGN KEY (veiculo_id) REFERENCES veiculos (id)
+);
+
 INSERT INTO veiculos(marca, modelo, placa, ano, cor, valor_diaria)
 VALUES ('Chevrolet', 'Celta', 'ABC-1234', 2010, 'preto', 100.00);
 

@@ -38,7 +38,7 @@ CREATE TABLE reservas
     veiculo_id     BIGINT NOT NULL,
     data_inicio    DATE   NOT NULL,
     data_fim       DATE   NOT NULL,
-    status         VARCHAR(50), -- reservado, cancelado, concluído
+    status         VARCHAR(50),
     valor_estimado DECIMAL(10, 2),
     criado_em      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (pessoa_id) REFERENCES pessoas (id),
@@ -53,3 +53,5 @@ VALUES ('Gustavo', '123998875434', '8927568291', 'gustavo@gmail.com');
 
 INSERT INTO alugueis(pessoa_id, veiculo_id, data_inicio, data_fim, valor_total)
 VALUES (1, 1, '2024-10-1', '2024-10-15', 1500.00);
+
+--INSERT INTO reservas(pessoa_id, veiculo_id, data_inicio, data_fim, status, valor_estimado) VALUES (1, 1, '2024-10-1', '2024-10-15', 'RESERVADO', 1500.00)

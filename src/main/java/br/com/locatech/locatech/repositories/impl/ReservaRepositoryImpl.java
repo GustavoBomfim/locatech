@@ -44,8 +44,10 @@ public class ReservaRepositoryImpl implements ReservaRepository {
     }
 
     @Override
-    public List<Reserva> findAll(){
-        return jdbcClient.sql("SELECT * FROM reservas")
+    public List<Reserva> findAll(int size, int offset){
+        return jdbcClient.sql("SELECT * FROM reservas LIMIT :size OFFSET :offset")
+                .param("size", size)
+                .param("offset", offset)
                 .query(Reserva.class)
                 .list();
     }

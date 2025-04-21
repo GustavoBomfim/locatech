@@ -12,7 +12,7 @@ public interface ReservaRepository {
 
     Optional<Reserva> findById(Long idReserva);
 
-    List<Reserva> findAll();
+    List<Reserva> findAll(int size, int offset);
 
     Integer cancelarReserva(Long idReserva);
 }

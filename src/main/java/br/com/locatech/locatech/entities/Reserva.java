@@ -22,7 +22,7 @@ public class Reserva {
     private LocalDate dataFim;
     private ReservaStatus status;
     private BigDecimal valorEstimado;
-    private LocalDate dataDeCriacao;
+    private LocalDate criadoEm;
 
     public void validarCancelamento(){
         if (!this.status.equals(ReservaStatus.RESERVADO)) {

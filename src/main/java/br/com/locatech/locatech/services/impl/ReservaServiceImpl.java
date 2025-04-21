@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,6 +45,13 @@ public class ReservaServiceImpl implements ReservaService {
         return reservaRepository.findById(idReserva)
                 .orElseThrow(() -> new ResourceNotFoundException("Reserva " + idReserva + " não encontrada"));
     }
+
+    @Override
+    public List<Reserva> findAllReservas(int page, int size) {
+        int offset = (page - 1) * size;
+        return reservaRepository.findAll(size, offset);
+    }
+
 
     private BigDecimal calcularValorAluguel(Integer dias, BigDecimal valorDiaria) {
         return valorDiaria.multiply(new BigDecimal(dias));

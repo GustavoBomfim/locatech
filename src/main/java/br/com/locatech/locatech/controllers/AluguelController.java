@@ -3,6 +3,8 @@ package br.com.locatech.locatech.controllers;
 import br.com.locatech.locatech.dtos.AluguelRequestDTO;
 import br.com.locatech.locatech.entities.Aluguel;
 import br.com.locatech.locatech.services.AluguelService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/alugueis")
+@Tag(name = "Aluguel", description = "Controller para crud de aluguel")
 public class AluguelController {
 
     private static final Logger logger = LoggerFactory.getLogger(AluguelController.class);
@@ -27,6 +30,7 @@ public class AluguelController {
     }
 
 
+    @Operation(summary = "Busca todos os alugueis paginados")
     @GetMapping
     public ResponseEntity<List<Aluguel>> findAllAlugueis(@RequestParam("page") int page, @RequestParam("size") int size) {
         logger.info("findAll -> /alugueis");
@@ -34,6 +38,7 @@ public class AluguelController {
         return ResponseEntity.ok(alugueis);
     }
 
+    @Operation(summary = "Busca aluguel pelo id")
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Aluguel>> findAluguel(@PathVariable Long id) {
         logger.info("/alugueis/" + id);
@@ -41,6 +46,7 @@ public class AluguelController {
         return ResponseEntity.ok(aluguel);
     }
 
+    @Operation(summary = "Cadastra aluguel")
     @PostMapping
     public ResponseEntity<Void> saveAluguel(@Valid @RequestBody AluguelRequestDTO aluguel) {
         logger.info("POST -> /alugueis");
@@ -48,6 +54,7 @@ public class AluguelController {
         return ResponseEntity.status(201).build();
     }
 
+    @Operation(summary = "Atualiza aluguel filtrado por id")
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateAluguel(@PathVariable Long id, @RequestBody Aluguel aluguel) {
         logger.info("PUT -> /alugueis/" + id);
@@ -56,6 +63,7 @@ public class AluguelController {
         return ResponseEntity.status(status.value()).build();
     }
 
+    @Operation(summary = "Deleta aluguel filtrado por id")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAluguel(@PathVariable Long id) {
         logger.info("Delete -> /alugueis/" + id);
